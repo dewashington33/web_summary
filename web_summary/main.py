@@ -16,7 +16,7 @@ LLM_MODEL = os.getenv("LLM_MODEL")  # optional for OpenAI/Gemini
 
 system_prompt = """
 You are a helpful and knowledgeable assistant that analyzes the contents of a website,
-and provides a short, snarky, humorous summary, ignoring text that might be navigation related.
+and provides a detailed summary, ignoring text that might be navigation related.
 Respond in markdown. Do not wrap the markdown in a code block - respond just with the markdown.
 """
 
