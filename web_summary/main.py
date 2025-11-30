@@ -14,13 +14,13 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2")
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama").lower()
 LLM_MODEL = os.getenv("LLM_MODEL")  # optional for OpenAI/Gemini
 
-system_prompt = """
+system_prompt: str = """
 You are a helpful and knowledgeable assistant that analyzes the contents of a website,
 and provides a detailed summary, ignoring text that might be navigation related.
 Respond in markdown. Do not wrap the markdown in a code block - respond just with the markdown.
 """
 
-user_prompt_prefix = """
+user_prompt_prefix: str = """
 Here are the contents of a website.
 Provide a short summary of this website.
 If it includes news or announcements, then summarize these too.
@@ -28,7 +28,7 @@ If it includes news or announcements, then summarize these too.
 """
 
 
-def messages_for(website):
+def messages_for(website: str) -> list[dict[str, str]]:
     """Create message list for the LLM."""
     return [
         {"role": "system", "content": system_prompt},
@@ -36,7 +36,7 @@ def messages_for(website):
     ]
 
 
-def summarize(url):
+def summarize(url: str) -> str:
     """Fetch and summarize a website using selected LLM provider."""
     website = fetch_website_contents(url)
 
@@ -84,9 +84,9 @@ def summarize(url):
 
 def main():
     """Main entry point for testing."""
-    url = input("Enter a URL to summarize: ")
+    url: str = input("Enter a URL to summarize: ")
     print("\nFetching and summarizing...\n")
-    summary = summarize(url)
+    summary: str = summarize(url)
     print(summary)
 
 
